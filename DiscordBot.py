@@ -4,7 +4,7 @@ import os
 import random
 import discord #Allows for work with discord.py
 from dotenv import load_dotenv #Allows to load environmental variables
-from PIL import Image
+
 
 
 intent = discord.Intents.default()
@@ -44,17 +44,19 @@ async def on_member_join(member):
 async def on_message(message):
     if message.author == client.user:
         return
-    pic = Image.open("DeezNuts.gif")
-    reply = ["I said you a little bitch", "Fight me!", "Im gonna pop one in your ass"]
-    if message.content == "GIF":
-        rep = pic
-        await channel.send(file=discord.File('DeezNuts.gif'))
+
+    reply = ["Don't count on it.", "My reply is no.", "As I see it, yes.","It is certain.","Most likely.","Outlook not so good.","Ask again later.","Better not tell you now."]
+
+
     emoji = [":tired_face:",":grinning:"]
     if message.content == "How are you feeling Dimple?":
         feelings = random.choice(emoji)
         await message.channel.send(feelings)
 
-    if message.content == "Say what":
+    words = message.content.split()
+    locateListen = discord.utils.find(lambda l: l == "Listen",words)
+
+    if (locateListen != None):
         response = random.choice(reply)
         await message.channel.send(response)
 
