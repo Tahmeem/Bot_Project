@@ -1,6 +1,6 @@
 
 
-import os, random, time
+import os, random, time #Necessary modules
 import discord #Allows for work with discord.py
 from dotenv import load_dotenv #Allows to load environmental variables
 
