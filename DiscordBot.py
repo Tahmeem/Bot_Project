@@ -18,36 +18,27 @@ channel = client.get_channel(client.get_all_channels())
 
 
 @client.event #Event handler using decorater
-async def on_ready():
-    guild = discord.utils.get(client.guilds, name=Guild)
+async def on_ready(): #When dimple is launched
+    guild = discord.utils.get(client.guilds, name=Guild) #retrieving guild using discord.py easy to write functions
     print(f'{client.user} has connected to {guild.name} with the ID: {guild.id}!')
 
-"""
-    member_list = []
-    for member in guild.members:
-        member_list.append(member.name)
-    member_list = "\n".join(member_list)
-    print(member_list)
-"""
+
 @client.event
-async def on_member_join(member):
-    await member.create_dm()
+async def on_member_join(member): #When a member joins
+    await member.create_dm() #Cretes a private message and sends it to user
     await member.dm_channel.send(
         f'Dimple welcomes you {member.name}!'
     )
 
-#role = discord.utils.get(member.server.roles, id = "")
-    #await client.add_roles(Lab Rats.Snowflake)
-
 
 @client.event
-async def on_message(message):
-    if message.author == client.user:
+async def on_message(message): #When users sends message
+    if message.author == client.user: #To make sure its not a message by bot
         return
 
     guild = discord.utils.get(client.guilds, name=Guild) #Obtains the correct server
     member_list = ["`Server members are:`"]
-    for member in guild.members:
+    for member in guild.members: #Loop stores members in list
         if member.bot: #Adds bot to bot members
             member_list.append("`-" + member.name + " (Bot)`")
         else:
@@ -55,8 +46,15 @@ async def on_message(message):
     member_list = "\n".join(member_list)
     if message.content == "Dimple give me server info":
         await message.channel.send(f"`Number of members: {guild.member_count}`" )
-        time.sleep(1)
+        time.sleep(1) #To make it seem like bots thinking
         await message.channel.send(member_list) #Sending out the list
+
+
+    emoji = [":tired_face:",":grinning:",":disappointed:",":angry:",":neutral_face:"] #Emojis dimple can express
+    if message.content == "How are you feeling Dimple?":
+        feelings = random.choice(emoji) #Randomely selects emoji
+        await message.channel.send(feelings)
+
 
     reply = [
         "Don't count on it.",
@@ -67,25 +65,19 @@ async def on_message(message):
         "Outlook not so good.",
         "Ask again later.",
         "Better not tell you now."
-    ]
-
-
-    emoji = [":tired_face:",":grinning:",":disappointed:",":angry:",":neutral_face:"]
-    if message.content == "How are you feeling Dimple?":
-        feelings = random.choice(emoji)
-        await message.channel.send(feelings)
+    ] #For yes/no question
 
 
     words = message.content.split()
     locateListen = discord.utils.find(lambda l: l == "Listen",words)
     locateQuestionMark = discord.utils.find(lambda l: l == "?", words[-1])
 
-    if (locateListen != None and locateQuestionMark != None):
+    if (locateListen != None and locateQuestionMark != None): #Looks for both listen and a question mark
         response = random.choice(reply)
         await message.channel.send(response)
-    elif locateListen != None and locateQuestionMark == None:
+    elif locateListen != None and locateQuestionMark == None: #If listen is said
         fixPunctuationResponse = "Dimple either doesn't see a question or question mark.\nDon't mess with me!"
         await message.channel.send(fixPunctuationResponse)
 
-client.run(botTOKEN)
+client.run(botTOKEN) #Makes the bot run and connects to discord
 
