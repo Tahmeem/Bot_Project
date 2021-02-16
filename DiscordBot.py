@@ -30,7 +30,6 @@ async def on_member_join(member): #When a member joins
         f'Dimple welcomes you {member.name}!'
     )
 
-
 @client.event
 async def on_message(message): #When users sends message
     if message.author == client.user: #To make sure its not a message by bot
@@ -54,7 +53,13 @@ async def on_message(message): #When users sends message
     if message.content == "How are you feeling Dimple?":
         feelings = random.choice(emoji) #Randomely selects emoji
         await message.channel.send(feelings)
-
+    if message.content == "Help Dimple":
+        help_options = """Dimple can:
+-give server info if you say `Dimple give me server info`
+-Tell you how I feel if you say `How are you feeling Dimple?`
+-Answer yes/no question if you ask with `Listen` included and add `?` at the end of your question
+"""
+        await message.channel.send(help_options)
 
     reply = [
         "Don't count on it.",
@@ -67,17 +72,15 @@ async def on_message(message): #When users sends message
         "Better not tell you now."
     ] #For yes/no question
 
+    if message.content:
+        words = message.content.split()
+        locateListen = discord.utils.find(lambda l: l == "Listen",words)
+        locateQuestionMark = discord.utils.find(lambda l: l == "?", words[-1])
 
-    words = message.content.split()
-    locateListen = discord.utils.find(lambda l: l == "Listen",words)
-    locateQuestionMark = discord.utils.find(lambda l: l == "?", words[-1])
-
-    if (locateListen != None and locateQuestionMark != None): #Looks for both listen and a question mark
-        response = random.choice(reply)
-        await message.channel.send(response)
-    elif locateListen != None and locateQuestionMark == None: #If listen is said
-        fixPunctuationResponse = "Dimple either doesn't see a question or question mark.\nDon't mess with me!"
-        await message.channel.send(fixPunctuationResponse)
-
+        if (locateListen != None and locateQuestionMark != None): #Looks for both listen and a question mark
+            response = random.choice(reply)
+            await message.channel.send(response)
+        elif locateListen != None and locateQuestionMark == None: #If listen is said
+            fixPunctuationResponse = "Dimple either doesn't see a question or question mark.\nDon't mess with me!"
+            await message.channel.send(fixPunctuationResponse)
 client.run(botTOKEN) #Makes the bot run and connects to discord
-
