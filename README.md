@@ -1,4 +1,4 @@
-#README for Dimple Bot
+# README for Dimple Bot
 
 **Version 1.0.0**
 
