@@ -1,9 +1,9 @@
 
 
-import os, random, time #Necessary modules
+import os, random #Necessary modules
 import discord #Allows for work with discord.py
 from dotenv import load_dotenv #Allows to load environmental variables
-
+from datetime import datetime
 
 
 intent = discord.Intents.default()
@@ -27,7 +27,7 @@ async def on_ready(): #When dimple is launched
 async def on_member_join(member): #When a member joins
     await member.create_dm() #Cretes a private message and sends it to user
     await member.dm_channel.send(
-        f'Dimple welcomes you {member.name}!'
+        f'Dimple welcomes you {member.name}! Say `Help Dimple` in server to see the ways I can assist you'
     )
 
 @client.event
@@ -49,11 +49,27 @@ async def on_message(message): #When users sends message
     if Checker != None:
         Word_check.pop(0)
         Word_check = " ".join(Word_check)
-        print(Word_check)
         file = open('Suggestion.csv', 'a')
-        file.write(f'\n{message.author},{Word_check}')
+        file.write(f'\n{message.author},{Word_check[0]}')
         file.close()
         await message.channel.send("Thank you! Dimple has received your message.")
+
+    if "Set reminder for" in message.content:
+        Terms = message.content.split(" ")
+
+        for i in range(0,3):
+            del Terms[0]
+        current_time = datetime.now().strftime("%H:%M")
+        await message.channel.send(f"Got it! Dimple will remind you at {Terms[0]}:{Terms[1]}")
+        while f"{Terms[0]}:{Terms[1]}" != current_time:
+            current_time = datetime.now().strftime("%H:%M")
+            if f"{Terms[0]}:{Terms[1]}" == current_time:
+                break
+        await message.channel.send(f"@{message.author.name} ITS YOUR TIME!")
+
+
+
+
 
 
     member_list = ["`Server members are:`"]
@@ -65,7 +81,6 @@ async def on_message(message): #When users sends message
     member_list = "\n".join(member_list)
     if message.content == "Dimple give me server info":
         await message.channel.send(f"`Number of members: {guild.member_count}`" )
-        time.sleep(1) #To make it seem like bots thinking
         await message.channel.send(member_list) #Sending out the list
 
 
