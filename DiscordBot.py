@@ -95,6 +95,7 @@ async def on_message(message): #When users sends message
 -Answer yes/no question if you ask with `Listen` included and add `?` at the end of your question
 -Show roles available if you say `Dimple show roles available`
 -Can add a suggestion for admin to see if you say `!Suggestion [insert suggestion here]`
+-Can set a reminder if time provided in a 24 hour format like `14 02`
 """
         await message.channel.send(help_options)
 
