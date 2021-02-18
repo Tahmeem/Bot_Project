@@ -1,4 +1,5 @@
 #README for Dimple Bot
+
 **Version 1.0.0**
 
 Dimple was made using the discord.py library provided by python.
