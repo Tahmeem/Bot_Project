@@ -50,7 +50,8 @@ async def on_message(message): #When users sends message
         Word_check.pop(0)
         Word_check = " ".join(Word_check)
         file = open('Suggestion.csv', 'a')
-        file.write(f'\n{message.author},{Word_check[0]}')
+        print(Word_check)
+        file.write(f'\n{message.author},{Word_check}')
         file.close()
         await message.channel.send("Thank you! Dimple has received your message.")
 
@@ -66,10 +67,6 @@ async def on_message(message): #When users sends message
             if f"{Terms[0]}:{Terms[1]}" == current_time:
                 break
         await message.channel.send(f"@{message.author.name} ITS YOUR TIME!")
-
-
-
-
 
 
     member_list = ["`Server members are:`"]
