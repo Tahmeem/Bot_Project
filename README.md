@@ -11,3 +11,7 @@ On members joining a server dimple can welcome them through a DM.
 In the server "Help Dimple" will trigger Dimple to show all the things it can do.
 ![img_1.png](Images/img_1.png)
 
+!Suggestion takes suggestion given by user and stores it within suggestion.csv.
+Suggestion.csv saves suggestion with the User,suggestion.
+![SuggestionFunction.png](Images/SuggestionFunction.PNG)
+
