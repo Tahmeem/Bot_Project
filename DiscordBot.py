@@ -40,9 +40,8 @@ async def on_message(message): #When users sends message
         for role in roles:
             if role.name == '@everyone':
                 continue
-            else:
+            elif role.name != "@everyone":
                 await message.channel.send("`-" + role.name + "`")
-                time.sleep(1)
 
     Word_check = message.content.split(" ")
     Checker = discord.utils.find(lambda l: l == "!Suggestion", Word_check)
