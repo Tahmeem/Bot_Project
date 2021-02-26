@@ -57,6 +57,7 @@ body{
 	display:block;
 	width:20%;
 	margin-top:10px;
+	margin-left:50%;
 	border:1px gray solid;
 	border-radius:15px;
 }
@@ -77,8 +78,18 @@ body{
 .section2 img{
 	display:block;
 	width:60%;
-	margin-left:150px;
+	margin-left:40%;
 	border:1px gray solid;
 	border-radius:15px;
 
+}
+
+.section3 h3{
+	font-family: Helvetica;
+	font-weight:1000;
+	padding-left:150px;
+}
+
+.section3 p{
+	padding-left:150px;
 }
