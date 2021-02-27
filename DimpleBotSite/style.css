@@ -1,9 +1,11 @@
+
+/*Webpages overall color*/
 *{
 	color: gray;
 }
 
 
-
+/*Background image and modifications to prevent repetition*/
 body{
 	background-image:url(images/background.jpg);
 	-webkit-background-size: cover;
@@ -11,6 +13,7 @@ body{
     -o-background-size: cover;
     background-size: cover;
 }
+/*Big header at the top*/
 .MainHead{
 	width:85%;
 	margin-left:10%; 
@@ -20,7 +23,7 @@ body{
 	border:3px gray solid;
 	border-radius:20px;
 }
-
+/*Style for sidebar*/
 .sidenav{
 	height:100%;
 	width:150px;
@@ -32,18 +35,19 @@ body{
 }
 
 
-
+/*Styling for each element of sidebar*/
 .sidenav a{
 	display:block;
 	padding: 6px 8px 6px 8px;
 	text-decoration: none;
 }
 
+/*When user hovers over element in sidebar*/
 .sidenav a:hover{
 	background-color:white;
 }
 
-
+/*About dimple section*/
 .section1 h3{	
 	font-family: Helvetica;
 	font-weight:1000;
@@ -61,11 +65,12 @@ body{
 	border:1px gray solid;
 	border-radius:15px;
 }
-
+/*Container for all sections text*/
 .Container{
 	width:70%;
 }
 
+/*List below about dimple section*/
 .section2 p{
 	padding-left:150px;
 	font-style: italic;
@@ -84,6 +89,7 @@ body{
 
 }
 
+/*Dimple origin section*/
 .section3 h3{
 	font-family: Helvetica;
 	font-weight:1000;
